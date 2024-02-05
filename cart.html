@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="cart.css" />
+    <script src="cart.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="head">
+      <div class="cart">장바구니</div>
+      <!-- <img src="img/cart.png" class="cart_img" /> -->
+    </header>
+    <section class="container">
+      <div class="check_container">
+        <input type="checkbox" class="check_all" />
+        <span class="check_all_coment">전체선택</span>
+      </div>
+      <article class="products">
+        <div class="product">
+          <div class="product_check">
+            <input type="checkbox" class="book_check" />
+          </div>
+          <img src="img/금단의마술.png" class="book_img" />
+          <div class="product-information">
+            <h3 class="title">금단의 마술</h3>
+            <span class="author">히가시노 게이고</span>
+            <span class="price">15300원</span>
+          </div>
+          <div class="product_total_price">
+            <div class="product_price">15300원</div>
+            <div class="product_quantity">
+              <input
+                type="button"
+                value="-"
+                class="minus"
+                onclick="count('minus')"
+              />
+              <div class="quantity_result">1</div>
+              <input
+                type="button"
+                value="+"
+                class="plus"
+                onclick="count('plus')"
+              />
+            </div>
+          </div>
+        </div>
+      </article>
+      <aside>
+        <div class="payment">
+          <div class="payment_info">
+            <ul class="payment_info_list">
+              <li class="payment_info_item">
+                <span class="label">상품금액</span>
+                <span class="label_price">18800원</span>
+              </li>
+              <li class="payment_info_item">
+                <span class="label">배송비</span>
+                <span class="label_price">+2500원</span>
+              </li>
+            </ul>
+          </div>
+          <div class="total_payment">
+            <div class="total_payment_value">
+              <span id="total_label">총 결제 금액</span>
+              <span id="total_price">21300원</span>
+            </div>
+            <button id="payment_button">결제하기</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,214 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.cart {
+  font-size: 40px;
+  font-weight: 600;
+  border-bottom: 1px solid gray;
+  padding: 30px;
+}
+
+/* check_all */
+.container {
+  padding: 50px;
+}
+
+.check_container {
+  width: 900px;
+  height: 60px;
+  background-color: #f7f7f7;
+  border-radius: 30px;
+  position: relative;
+  top: 30px;
+  left: 65px;
+}
+
+.check_all {
+  position: relative;
+  top: 15px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.check_all_coment {
+  display: inline-block;
+  position: relative;
+  top: 11px;
+  left: 30px;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+/* product */
+
+/* product-check */
+.product_check {
+  width: 60px;
+}
+
+.book_check {
+  position: relative;
+  top: 15px;
+  left: 15px;
+  width: 20px;
+  height: 20px;
+}
+
+/* product-image&info */
+.products {
+  padding: 50px;
+}
+
+.product {
+  display: flex;
+  width: 900px;
+  height: 200px;
+  background-color: #f7f7f7;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.book_img {
+  width: 120px;
+  height: 160px;
+  position: relative;
+  top: 20px;
+}
+
+.product-information {
+  width: 400px;
+  margin-left: 50px;
+}
+
+.product-information h3 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.author {
+  color: gray;
+}
+.price {
+  display: block;
+  margin-top: 20px;
+}
+
+/* product_total_price */
+
+.product_total_price {
+  width: 200px;
+  height: 150px;
+  background-color: white;
+  border: 1px solid navy;
+  border-radius: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product_price {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* quantity-button */
+.quantity_result {
+  display: inline-block;
+  background-color: white;
+  width: 40px;
+  height: 25px;
+  text-align: center;
+  position: relative;
+  top: 5px;
+  left: 10px;
+}
+
+.product_quantity {
+  /* background-color: white; */
+  width: 120px;
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.plus,
+.minus {
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  position: relative;
+  top: 5px;
+  left: 10px;
+}
+
+/* aside */
+
+/* 이거 화면 줄였을때 어떻게 하면 안따라오게 하는지 모르겠다 */
+.payment {
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 200px;
+  height: 250px;
+  padding: 20px;
+  font-weight: 300;
+  top: 300px;
+  right: 150px;
+  position: fixed;
+  /* display: none; */
+}
+
+.payment_info {
+  border-bottom: 1px solid gray;
+}
+
+.payment_info_list {
+  margin-left: -30px;
+}
+
+.payment_info_item {
+  list-style: none;
+  margin-bottom: 20px;
+  left: 0;
+}
+
+.total_payment {
+  margin-left: 10px;
+}
+
+.total_payment_value {
+  position: relative;
+  top: 30px;
+}
+
+#payment_button {
+  width: 200px;
+  height: 50px;
+  position: relative;
+  left: -10px;
+  top: 60px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  background-color: navy;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.label_price,
+#total_price {
+  float: right;
+  font-weight: 1000;
+}
+
+.label,
+#total_label {
+  font-weight: 1000;
+}
