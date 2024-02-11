@@ -15,7 +15,7 @@ body {
 }
 
 .check_container {
-  width: 900px;
+  width: 850px;
   height: 60px;
   background-color: #f7f7f7;
   border-radius: 30px;
@@ -63,7 +63,7 @@ body {
 
 .product {
   display: flex;
-  width: 900px;
+  width: 850px;
   height: 200px;
   background-color: #f7f7f7;
   margin: 20px;
@@ -78,7 +78,7 @@ body {
 }
 
 .product-information {
-  width: 400px;
+  width: 350px;
   margin-left: 50px;
 }
 
@@ -115,17 +115,6 @@ body {
 }
 
 /* quantity-button */
-.quantity_result {
-  display: inline-block;
-  background-color: white;
-  width: 40px;
-  height: 25px;
-  text-align: center;
-  position: relative;
-  top: 5px;
-  left: 10px;
-}
-
 .product_quantity {
   /* background-color: white; */
   width: 120px;
@@ -133,19 +122,21 @@ body {
   border: 1px solid gray;
   border-radius: 20px;
   margin-top: 20px;
+  text-align: center;
 }
 
-.plus,
-.minus {
-  background-color: transparent;
-  border: transparent;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
-  position: relative;
-  top: 5px;
-  left: 10px;
+.quantity_label,
+.quantity_cnt {
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 8px;
+}
+.quantity_label {
+  margin-right: 5px;
+}
+
+.quantity_cnt {
+  margin-left: 5px;
 }
 
 /* aside */
@@ -159,9 +150,8 @@ body {
   padding: 20px;
   font-weight: 300;
   top: 300px;
-  right: 150px;
+  right: 100px;
   position: fixed;
-  /* display: none; */
 }
 
 .payment_info {
@@ -202,7 +192,8 @@ body {
   font-size: 15px;
 }
 
-.label_price,
+.all_product_price,
+.delivery_price,
 #total_price {
   float: right;
   font-weight: 1000;
