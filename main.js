@@ -4,10 +4,19 @@ const loadMoreBtn = document.querySelector("#load_more_btn");
 const saveIt = [];
 const newProducts = [];
 
-fetch("https://shopping-mall-rzdwe.run.goorm.site/books/")
+const loadCnt = 3;
+let nowCnt = 0;
+let endCnt = 0;
+
+fetch("http://43.203.50.204:8080/api/books/list")
   .then((response) => response.json())
   .then((data) => {
     data.forEach((goods) => {
+      if (nowCnt !== loadCnt) {
+        const newProduct = createProduct(goods);
+        products.appendChild(newProduct);
+        nowCnt++;
+      }
       newProducts.push(goods);
     });
   })
@@ -22,7 +31,7 @@ const createProduct = function (goods) {
   //image
   const productImage = document.createElement("img");
   productImage.classList.add("book_img");
-  productImage.src = goods.imageNum;
+  productImage.src = goods.imagePath;
 
   productContainer.appendChild(productImage);
 
@@ -62,13 +71,19 @@ const createProduct = function (goods) {
 };
 
 //더보기 누르면 product 3개씩 추가
-const loadCnt = 3;
-let nowCnt = 0;
-let endCnt = 0;
+// const loadCnt = 3;
+// let nowCnt = 0;
+// let endCnt = 0;
+// endCnt = nowCnt + loadCnt;
+// for (let i = nowCnt; i < endCnt; i++) {
+//   const newProduct = createProduct(newProducts[i]);
+//   products.appendChild(newProduct);
+// }
+// nowCnt = nowCnt + loadCnt;
+
 loadMoreBtn.addEventListener("click", () => {
   endCnt = nowCnt + loadCnt;
   if (endCnt > newProducts.length) endCnt = newProducts.length;
-  console.log(nowCnt, endCnt);
   for (let i = nowCnt; i < endCnt; i++) {
     const newProduct = createProduct(newProducts[i]);
     products.appendChild(newProduct);
@@ -81,27 +96,49 @@ loadMoreBtn.addEventListener("click", () => {
 products.addEventListener("click", (event) => {
   const target = event.target;
 
-  // 클릭된 요소가 장바구니 버튼인지 확인
-  if (target.classList.contains("btn-add-cart")) {
-    console.log("clicked");
-    const product = target.closest(".product"); // 가장 가까운 부모 요소인 상품 요소를 찾음
-    const productTitle = product.querySelector(".title").textContent;
-    const productAuthor = product.querySelector(".author").textContent;
-    const productPrice = product.querySelector(".price").textContent;
-    const productImage = product.querySelector(".book_img").src;
+  const product = target.closest(".product"); // 가장 가까운 부모 요소인 상품 요소를 찾음
+  const productTitle = product.querySelector(".title").textContent;
+  const productAuthor = product.querySelector(".author").textContent;
+  const productPrice = product.querySelector(".price").textContent;
+  const productImage = product.querySelector(".book_img").src;
 
-    saveItems(productTitle, productAuthor, productPrice, productImage);
+  let description = "";
+  let id = "";
+  for (i = 0; i < newProducts.length; i++) {
+    if (newProducts[i].title === productTitle) {
+      description = newProducts[i].description;
+      id = newProducts[i].id;
+      break;
+    }
   }
-});
-
-const saveItems = (productTitle, productAuthor, productPrice, productImage) => {
-  const bookObj = {
+  const selectedBookObj = {
+    id: id,
     title: productTitle,
     author: productAuthor,
     price: productPrice,
-    imageNum: productImage,
-    quantity: 1,
+    imagePath: productImage,
+    description: description,
   };
+
+  // 클릭된 요소가 장바구니 버튼인지 확인
+  if (target.classList.contains("btn-add-cart")) {
+    console.log("clicked");
+    saveItems(selectedBookObj);
+    alert("장바구니에 추가되었습니다");
+  }
+  // 클릭된 요소가 사진이라면 상세페이지로 이동
+  if (target.classList.contains("book_img")) {
+    // localStorage.setItem("selected-book", JSON.stringify(selectedBookObj));
+
+    let params = new URLSearchParams();
+    params.append("id", id);
+    params = params.toString();
+    window.location.href = "detail.html?" + params;
+  }
+});
+
+const saveItems = (bookObj) => {
+  bookObj.quantity = 1;
   saveIt.push(bookObj);
   localStorage.setItem("saved-items", JSON.stringify(saveIt));
 };
@@ -114,3 +151,8 @@ if (savedProducts) {
     saveIt.push(savedProducts[i]);
   }
 }
+
+const cartMenu = document.querySelector("#cart");
+cartMenu.addEventListener("click", () => {
+  location.href = "cart.html";
+});

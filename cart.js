@@ -53,7 +53,7 @@ const createProduct = (goods) => {
   //image
   const productImage = document.createElement("img");
   productImage.classList.add("book_img");
-  productImage.src = goods.imageNum;
+  productImage.src = goods.imagePath;
 
   productContainer.appendChild(productImage);
 
