@@ -206,3 +206,9 @@ body {
 #total_label {
   font-weight: 1000;
 }
+
+@media only screen and (max-width: 990px) {
+  .container {
+    flex-direction: column;
+  }
+}

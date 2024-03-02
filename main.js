@@ -156,3 +156,8 @@ const cartMenu = document.querySelector("#cart");
 cartMenu.addEventListener("click", () => {
   location.href = "cart.html";
 });
+
+const postMenu = document.querySelector("#post");
+postMenu.addEventListener("click", () => {
+  location.href = "post.html";
+});

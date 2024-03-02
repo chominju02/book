@@ -11,11 +11,13 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 const createProduct = (savedProducts) => {
-  const product = document.querySelector(".product");
+  const product2 = document.querySelector(".product2");
   const productImg = document.createElement("img");
   productImg.classList.add("book_img");
   productImg.src = savedProducts.imagePath;
-  product.appendChild(productImg);
+  product2.appendChild(productImg);
+
+  const product = document.querySelector(".product");
 
   const bookInfo = document.createElement("div");
   bookInfo.classList.add("book_info");
