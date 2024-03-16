@@ -2,28 +2,24 @@ const products = document.querySelector(".products");
 const product = document.querySelectorAll(".product");
 const loadMoreBtn = document.querySelector("#load_more_btn");
 const saveIt = [];
-const newProducts = [];
+let newProducts = [];
 
-const loadCnt = 3;
-let nowCnt = 0;
-let endCnt = 0;
-
-fetch("http://43.203.50.204:8080/api/books/list")
-  .then((response) => response.json())
-  .then((data) => {
-    data.forEach((goods) => {
-      if (nowCnt !== loadCnt) {
-        const newProduct = createProduct(goods);
-        products.appendChild(newProduct);
-        nowCnt++;
-      }
-      newProducts.push(goods);
+//책 정보 받아오는 부분
+window.addEventListener("DOMContentLoaded", () => {
+  fetch("http://43.203.50.204:8080/api/books/list")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((goods) => {
+        newProducts.push(goods);
+      });
+      startLoad();
+    })
+    .catch((error) => {
+      console.error(error);
     });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+});
 
+//책 생성 부분
 const createProduct = function (goods) {
   const productContainer = document.createElement("div");
   productContainer.classList.add("product");
@@ -81,6 +77,19 @@ const createProduct = function (goods) {
 // }
 // nowCnt = nowCnt + loadCnt;
 
+const loadCnt = 3;
+let nowCnt = 0;
+let endCnt = 0;
+
+function startLoad() {
+  for (i = 0; i < 3; i++) {
+    const newProduct = createProduct(newProducts[i]);
+    products.appendChild(newProduct);
+  }
+  nowCnt = 3;
+}
+
+//누르면 더 보여주는 부분
 loadMoreBtn.addEventListener("click", () => {
   endCnt = nowCnt + loadCnt;
   if (endCnt > newProducts.length) endCnt = newProducts.length;
@@ -95,8 +104,13 @@ loadMoreBtn.addEventListener("click", () => {
 // 상위 요소에 이벤트 리스너 추가
 products.addEventListener("click", (event) => {
   const target = event.target;
-
+  if (!products.contains(target)) {
+    return;
+  }
   const product = target.closest(".product"); // 가장 가까운 부모 요소인 상품 요소를 찾음
+  if (!product) {
+    return;
+  }
   const productTitle = product.querySelector(".title").textContent;
   const productAuthor = product.querySelector(".author").textContent;
   const productPrice = product.querySelector(".price").textContent;
@@ -160,4 +174,40 @@ cartMenu.addEventListener("click", () => {
 const postMenu = document.querySelector("#post");
 postMenu.addEventListener("click", () => {
   location.href = "post.html";
+});
+
+//sorting
+const displayBooks = function () {
+  products.innerHTML = "";
+  startLoad();
+};
+
+const selectBox = document.querySelector("#selectBox");
+selectBox.addEventListener("change", () => {
+  const selectedOption = selectBox.value;
+
+  switch (selectedOption) {
+    case "sort-normal":
+      newProducts.sort((a, b) => a.id - b.id);
+      displayBooks(newProducts);
+      break;
+    case "sort-lowPrice":
+      newProducts.sort((a, b) => a.price - b.price);
+      displayBooks(newProducts);
+      break;
+    case "sort-highPrice":
+      newProducts.sort((a, b) => b.price - a.price);
+      displayBooks(newProducts);
+      break;
+    case "sort-ascending":
+      newProducts.sort((a, b) => a.title.localeCompare(b.title));
+      displayBooks(newProducts);
+      break;
+    case "sort-descending":
+      newProducts.sort((a, b) => b.title.localeCompare(a.title));
+      displayBooks(newProducts);
+      break;
+    default:
+      break;
+  }
 });

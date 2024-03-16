@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book</title>
     <link rel="stylesheet" href="main.css" />
-    <script src="main.js" defer></script>
-
+    <!-- <script src="main.js" defer></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -66,6 +65,17 @@
           </div>
         </div>
       </article>
+      <select id="selectBox" name="selectSort">
+        <option id="sort-normal" value="sort-normal">기본순</option>
+        <option id="sort-lowPrice" value="sort-lowPrice">낮은 가격순</option>
+        <option id="sort-highPrice" value="sort-highPrice">높은 가격순</option>
+        <option id="sort-ascending" value="sort-ascending">
+          상품명 오름차순
+        </option>
+        <option id="sort-descending" value="sort-descending">
+          상품명 내림차순
+        </option>
+      </select>
       <article class="products">
         <!-- <div class="product">
           <img src="img/금단의마술.png" class="book_img" />
@@ -103,5 +113,6 @@
       </article>
       <button id="load_more_btn">더보기</button>
     </section>
+    <script src="main_class.js"></script>
   </body>
 </html>
